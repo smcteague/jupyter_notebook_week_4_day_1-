@@ -1,3 +1,5 @@
+import re
+
 with open("regex_test.txt") as f:
     data = f.readlines()
 
