@@ -1,0 +1,28 @@
+with open("regex_test.txt") as f:
+    data = f.readlines()
+
+pattern_no_middle = r'(?P<no_middle>^[A-Z][a-z]+\s[A-Z][a-z]+)$'
+pattern_middle_initial = r'(?P<middle_initial>^[A-Z][a-z]+\s[A-Z]{1}\s[A-Z][a-z]+)$'
+pattern_middle_name = r'(?P<middle_name>^[A-Z][a-z]+\s[A-Z][a-z]+\s[A-Z][a-z]+)$'
+
+pattern = re.compile(f"{pattern_no_middle}|{pattern_middle_initial}|{pattern_middle_name}")
+                     
+print("\"\"\"")
+print("Expected Output")
+
+for person in data:
+
+    match = pattern.search(person)
+    
+    if match:
+        if match.group('no_middle'):
+            print(f"{match.group('no_middle')}")
+        elif match.group('middle_initial'):
+                print(f"{match.group('middle_initial')}")
+        elif match.group('middle_name'):
+                print(f"{match.group('middle_name')}")
+    else:
+        print(match)
+        
+        
+print("\"\"\"")
